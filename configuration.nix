@@ -19,15 +19,10 @@
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
-  boot.loader.grub.extraEntries = ''
-  menuentry "Windows 10" {
-    chainloader (hd0,1)+1
-  }
-  '';
-
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -126,11 +121,6 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
-  users.users.celine = {
-    isNormalUser = true;
-  };
-
-
   users.users.avicena = {
     isNormalUser = true;
   };
@@ -144,4 +134,3 @@
   system.stateVersion = "20.03"; # Did you read the comment?
 
 }
-
